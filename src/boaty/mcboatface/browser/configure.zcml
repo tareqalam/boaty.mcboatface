@@ -17,5 +17,13 @@
       type="plone"
       directory="static"
       />
+  
+  <browser:page
+        for="*"
+        class=".student_list.StudentList"
+        name="student_list"
+        template="student_list.pt"
+        permission="cmf.ManagePortal" />
+
 
 </configure>

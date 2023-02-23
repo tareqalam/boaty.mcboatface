@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="en" metal:use-macro="here/main_template/macros/master"
+  i18n:domain="plone">
+
+<body>
+  <metal:main fill-slot="main">
+    <h1>List of students</h1>
+
+    <p tal:content="python:context.absolute_url()" />
+
+    <table class="listing" tal:define="students 
+    python:context.portal_catalog.searchResults(
+      portal_type='Student',
+      path='/'.join(context.getPhysicalPath()),
+      sort_on='created',
+      sort_order='reverse')">
+      <tr>
+        <th>Student name</th>
+        <th>Age</th>
+        <th>Gender</th>
+      </tr>
+      <tr tal:repeat="student students">
+        <metal:def tal:define="obj python:student.getObject()">
+          <td tal:content="obj/studentName"></td>
+          <td tal:content="obj/age"></td>
+          <td tal:content="obj/gender"></td>
+        </metal:def>
+      </tr>
+
+    </table>
+  </metal:main>
+</body>
+
+</html>

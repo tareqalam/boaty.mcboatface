@@ -15,7 +15,7 @@ from zope.interface import implementer
 from boaty.mcboatface import _
 
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-# from zope.interface import invariant, Invalid
+from zope.interface import invariant, Invalid
 
 vocab_gender = SimpleVocabulary([
     # SimpleTerm(value='--NOVALUE--', title=_(u'Please Select')),
@@ -35,7 +35,8 @@ class IStudent(model.Schema):
     )
     
     age = schema.TextLine(
-        title=_(u'Age of student')
+        title=_(u'Age of student'),
+        required=False
     )
 
     gender = schema.Choice(
@@ -65,7 +66,6 @@ class IStudent(model.Schema):
     #     required=False
     # )
 
-    fieldset('Photos', fields=['studentPhoto'])
     studentPhoto = namedfile.NamedBlobImage(
          title=_(u'Student photo'),
          required=False,
@@ -82,6 +82,22 @@ class IStudent(model.Schema):
     #     title=_(u'Secret Notes (only for site-admins)'),
     #     required=False
     # )
+
+    fieldset('Photos', fields=['studentPhoto'])
+    fieldset('Bio', fields=['text'])
+
+
+    @invariant
+    def validateNumber(data):
+        # import pdb;pdb.set_trace()
+        if data.age:
+            if not str(data.age).isdigit():
+                raise Invalid(_(u'Age of student must be number'))
+            else:
+                if int(data.age) > 110:
+                    raise Invalid(_(u'Age of student can not be more than 110'))
+
+    
 
 
 @implementer(IStudent)
