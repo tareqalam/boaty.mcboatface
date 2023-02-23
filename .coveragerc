@@ -1,0 +1,6 @@
+[report]
+include =
+    src/boaty/*
+omit =
+    */test*
+    */upgrades/*
