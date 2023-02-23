@@ -7,6 +7,12 @@
   <!-- -*- extra stuff goes here -*- -->
 
     <permission
+        id="boaty.mcboatface.AddStudent"
+        title="boaty.mcboatface: Add Student"
+    />
+
+
+    <permission
         id="boaty.mcboatface.AddDepartment"
         title="boaty.mcboatface: Add Department"
     />

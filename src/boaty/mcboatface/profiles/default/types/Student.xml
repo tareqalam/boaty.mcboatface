@@ -1,38 +1,30 @@
 <?xml version="1.0"?>
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    name="Department"
+    name="Student"
     meta_type="Dexterity FTI"
     i18n:domain="boaty.mcboatface">
 
   <!-- Basic properties -->
   <property
       i18n:translate=""
-      name="title">Department</property>
+      name="title">Student</property>
   <property
       i18n:translate=""
-      name="description">Department of university</property>
+      name="description">Student of department</property>
 
   <property name="allow_discussion">False</property>
-  <property name="factory">Department</property>
+  <property name="factory">Student</property>
   <property name="icon_expr"></property>
   <property name="link_target"></property>
 
   <!-- Hierarchy control -->
-  <property name="global_allow">True</property>
-  <property name="filter_content_types">False</property>
-  <property name="allowed_content_types">
-    <element value="Student" />
-      <!--
-    <element value="Document" />
-    <element value="File" />
-  -->
-  </property>
+  <property name="global_allow">False</property>
   <!-- Schema, class and security -->
-  <property name="add_permission">boaty.mcboatface.AddDepartment</property>
-  <property name="klass">boaty.mcboatface.content.department.Department</property>
+  <property name="add_permission">boaty.mcboatface.AddStudent</property>
+  <property name="klass">boaty.mcboatface.content.student.Student</property>
   <property name="model_file"></property>
   <property name="model_source"></property>
-  <property name="schema">boaty.mcboatface.content.department.IDepartment</property>
+  <property name="schema">boaty.mcboatface.content.student.IStudent</property>
 
   <!-- Enabled behaviors -->
   <property name="behaviors" purge="false">
@@ -54,14 +46,10 @@
     <!--<element value="plone.tableofcontents"/>-->
     <!--<element value="plone.versioning" />-->
     <!--<element value="plone.translatable" />-->
-    <!--<element value="plone.nextprevioustoggle" />-->
-    <!--<element value="plone.nextpreviousenabled" />-->
-    <!--<element value="plone.navigationroot" />-->
-    <!--<element value="plone.selectablecontrainstypes" />-->
   </property>
 
   <!-- View information -->
-  <property name="add_view_expr">string:${folder_url}/++add++Department</property>
+  <property name="add_view_expr">string:${folder_url}/++add++Student</property>
   <property name="default_view">view</property>
   <property name="default_view_fallback">False</property>
   <property name="immediate_view">view</property>
