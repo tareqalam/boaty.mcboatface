@@ -6,9 +6,8 @@
 
     <div tal:define="data python:view.getStudents();
                          batch python:data[0];
-                        total python:data[1];
+                         total python:data[1];
                           b_size view/batch_size;
-                          b_start view/batch_start;
                           sort_on view/sort_on;">
 
       <form tal:attributes="action python:context.absolute_url()+'/student_list'" class="row">
@@ -29,6 +28,8 @@
             <select id="form-horizontal-select" name="sort_on" id="sort_on">
               <option value="created" tal:attributes="selected python:sort_on=='created' and 'selected' or '';" i18n:translate="created">Created</option>
               <option value="modified" tal:attributes="selected python:sort_on=='modified' and 'selected' or '';" i18n:translate="modified">Modified</option>
+              <option value="age" tal:attributes="selected python:sort_on=='age' and 'selected' or '';" i18n:translate="age">Age</option>
+            
             </select>
           </div>
         </div>
@@ -47,7 +48,8 @@
           <label>Gender</label>
           <div>
             <select id="form-horizontal-select" name="gender" id="gender">
-              <option value="" tal:attributes="selected python:str(context.REQUEST.get('gender', ''))=='' and 'selected' or '';">Select</option>
+              <option value="" 
+              tal:attributes="selected python:str(context.REQUEST.get('gender', ''))=='' and 'selected' or '';">Select</option>
               
               <option value="male" tal:attributes="selected python:str(context.REQUEST.get('gender'))=='male' and 'selected' or '';">Male</option>
               <option value="female" tal:attributes="selected python:str(context.REQUEST.get('gender'))=='female' and 'selected' or '';">Female</option>
@@ -83,13 +85,13 @@
             </td>
             <td>
               <a tal:attributes="href python:student.getURL() + '/'">
-                <span tal:replace="python:obj.age" />
+                <span tal:replace="python:student.age" />
               </a>
             </td>
 
             <td>
               <a tal:attributes="href python:student.getURL() + '/'">
-                <span tal:replace="python:obj.gender" />
+                <span tal:replace="python:student.gender" />
               </a>
             </td>
 

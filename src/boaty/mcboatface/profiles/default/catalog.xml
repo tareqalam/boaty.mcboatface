@@ -2,4 +2,5 @@
 <object name="portal_catalog">
   <column value="age"/>
   <column value="gender"/>
+  <column value="ageBelow25"/>
 </object>

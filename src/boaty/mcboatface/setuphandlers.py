@@ -35,7 +35,7 @@ def add_catalog_indexes(context):
     indexes = catalog.indexes()
 
     wanted_dateindex = []
-    wanted_fieldindex = ["age", "gender"]
+    wanted_fieldindex = ["age", "gender", "ageBelow25"]
     wanted_keywordindex=()
     missing_dateindex = [w for w in wanted_dateindex if w not in indexes]
     if missing_dateindex:

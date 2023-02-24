@@ -12,6 +12,8 @@ logger = logging.getLogger('customform')
 class IMyFormSchema(Interface):
     email = schema.TextLine(title=u"Email")
     password = schema.Password(title=u"Password")
+    age = schema.TextLine(title=u"Age of student", required=False)
+
 
 
 class AddNewUser(form.Form):
@@ -19,9 +21,13 @@ class AddNewUser(form.Form):
     ignoreContext = True
     fields = field.Fields(IMyFormSchema)
 
-    @button.buttonAndHandler(u'Submit')
+    @button.buttonAndHandler(u'Submit me')
     def handleApply(self, action):
         data, errors = self.extractData()
+        # send data in email
+        # register user in plone
+        # register an ScholarshipApplication content type with data
+
         logger.info(data)
         logger.info(errors)
         connection = get_connection()

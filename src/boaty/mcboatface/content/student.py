@@ -89,3 +89,11 @@ class IStudent(model.Schema):
 @implementer(IStudent)
 class Student(Item):
     """Content-type class for IStudent"""
+
+    def ageBelow25(self):
+        if self.age:
+            if int(self.age) < 25:
+                return 'yes'
+            else:
+                return 'no'
+        return None
