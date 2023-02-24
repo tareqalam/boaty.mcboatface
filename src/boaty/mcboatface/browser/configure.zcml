@@ -20,9 +20,16 @@
   
   <browser:page
         for="*"
-        class=".student_list.StudentList"
+        class=".common.StudentList"
         name="student_list"
-        template="student_list.pt"
+        template="templates/student_list.pt"
+        permission="cmf.ManagePortal" />
+
+<browser:page
+        for="*"
+        class=".common.StudentPortfolios"
+        name="student_portfolios"
+        template="templates/student_portfolios.pt"
         permission="cmf.ManagePortal" />
 
 

@@ -7,12 +7,9 @@
 
     <p tal:content="python:context.absolute_url()" />
 
+
     <table class="listing" tal:define="students 
-    python:context.portal_catalog.searchResults(
-      portal_type='Student',
-      path='/'.join(context.getPhysicalPath()),
-      sort_on='created',
-      sort_order='reverse')">
+    python:view.getStudents();">
       <tr>
         <th>Student name</th>
         <th>Age</th>
