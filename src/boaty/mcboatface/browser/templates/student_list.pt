@@ -3,26 +3,103 @@
 
 <body>
   <metal:main fill-slot="main">
-    <h1>List of students</h1>
 
-    <p tal:content="python:context.absolute_url()" />
+    <div tal:define="data python:view.getStudents();
+                         batch python:data[0];
+                        total python:data[1];
+                          b_size view/batch_size;
+                          b_start view/batch_start;
+                          sort_on view/sort_on;">
 
-    <table class="listing" tal:define="students 
-    python:view.getStudents();">
-      <tr>
-        <th>Student name</th>
-        <th>Age</th>
-        <th>Gender</th>
-      </tr>
-      <tr tal:repeat="student students">
-        <metal:def tal:define="obj python:student.getObject()">
-          <td tal:content="obj/studentName"></td>
-          <td tal:content="obj/age"></td>
-          <td tal:content="obj/gender"></td>
-        </metal:def>
-      </tr>
+      <form tal:attributes="action python:context.absolute_url()+'/student_list'" class="row">
+        <div class="col-md-3">
+          <label i18n:translate="show">Show</label>
+          <div>
+            <select id="b_size" NAME="b_size">
+                <option tal:repeat="item python:tuple([('','Select')]+[(str(i),str(i)) for i in (10,20,50,100,150,200,'all')])" 
+                tal:attributes="value python:item[0];selected python:str(context.REQUEST.get('b_size',10)) == item[0] and 'selected' or '';">
+                  <span tal:replace="python:item[1]" i18n:translate="" />
+                </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label>Sort by</label>
+          <div>
+            <select id="form-horizontal-select" name="sort_on" id="sort_on">
+              <option value="created" tal:attributes="selected python:sort_on=='created' and 'selected' or '';" i18n:translate="created">Created</option>
+              <option value="modified" tal:attributes="selected python:sort_on=='modified' and 'selected' or '';" i18n:translate="modified">Modified</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label>Age</label>
+          <div>
+            <select name="age" id="age">
+              <option tal:repeat="item python:tuple([('','Select')]+[(str(i),str(i)) for i in range(0,110)])" 
+              tal:attributes="value python:item[0];selected python:str(context.REQUEST.get('age')) == item[0] and 'selected' or '';">
+                <span tal:replace="python:item[1]" i18n:translate="" />
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label>Gender</label>
+          <div>
+            <select id="form-horizontal-select" name="gender" id="gender">
+              <option value="male" tal:attributes="selected python:str(context.REQUEST.get('gender'))=='male' and 'selected' or '';">Male</option>
+              <option value="female" tal:attributes="selected python:str(context.REQUEST.get('gender'))=='female' and 'selected' or '';">Female</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="form-horizontal-select">-</label>
+          <div class="uk-form-controls">
+            <button class="uk-button uk-button-default uk-width-1-1" i18n:translate="">Refresh List</button>
+          </div>
+        </div>
+      </form>
+      <hr/>
 
-    </table>
+      <h3>Total: <span tal:content="total" /></h3>
+      <table class="listing">
+
+        <thead>
+          <tr>
+            <th i18n:translate="">Student name</th>
+            <th i18n:translate="">Age</th>
+            <th i18n:translate="">Gender</th>
+          </tr>
+        </thead>
+
+        <metal:students tal:repeat="student batch">
+          <tr tal:define="obj python:student.getObject()">
+            <td>
+              <a tal:attributes="href python:student.getURL() + '/'">
+                <span tal:content="python:obj.studentName" />
+              </a>
+            </td>
+            <td>
+              <a tal:attributes="href python:student.getURL() + '/'">
+                <span tal:replace="python:obj.age" />
+              </a>
+            </td>
+
+            <td>
+              <a tal:attributes="href python:student.getURL() + '/'">
+                <span tal:replace="python:obj.gender" />
+              </a>
+            </td>
+
+          </tr>
+
+        </metal:students>
+      </table>
+
+      <div metal:use-macro="here/batch_macros/macros/navigation"></div>
+
+    </div>
+
   </metal:main>
 </body>
 

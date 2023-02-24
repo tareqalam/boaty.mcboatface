@@ -1,4 +1,20 @@
 <div class="portlet">
-  <h3>Lists</h3>
-  <a tal:condition="python: context.portal_type == 'Department'" tal:attributes="href python:context.absolute_url() + '/student_list'">Student list</a>
+  <header class="portletHeader">Menu
+  </header>
+  <section class="portletContent">
+    <ul>
+      <li class="portletItem">
+        <a class="tile" tal:condition="python: context.portal_type == 'Department'" tal:attributes="href python:context.absolute_url() + '/student_list'">Student list</a>
+
+      </li>
+
+      <li class="portletItem">
+        <a class="tile" tal:condition="python: context.portal_type == 'Department'" tal:attributes="href python:context.absolute_url() + '/++add++Student'">Add student</a>
+
+      </li>
+    </ul>
+  </section>
+
+  <footer class="portletFooter">
+  </footer>
 </div>
