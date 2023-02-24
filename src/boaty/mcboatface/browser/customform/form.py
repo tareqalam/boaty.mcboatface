@@ -3,16 +3,18 @@ from zope import schema
 from z3c.form import form, button, field
 from plone.z3cform import layout
 import logging
+from plone import api
+from boaty.mcboatface.database import get_connection
 
 logger = logging.getLogger('customform')
 
 
 class IMyFormSchema(Interface):
-    field1 = schema.TextLine(title=u"A text example field")
-    field2 = schema.Int(title=u"An integer example field")
+    email = schema.TextLine(title=u"Email")
+    password = schema.Password(title=u"Password")
 
 
-class AddNewTask(form.Form):
+class AddNewUser(form.Form):
     schema = IMyFormSchema
     ignoreContext = True
     fields = field.Fields(IMyFormSchema)
@@ -22,6 +24,24 @@ class AddNewTask(form.Form):
         data, errors = self.extractData()
         logger.info(data)
         logger.info(errors)
-        # do something
+        connection = get_connection()
+        with connection:
+            with connection.cursor() as cursor:
+                # Create a new record
+                sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
+                cursor.execute(sql, (data.get('email'), data.get('password')))
 
-AddNewTaskView = layout.wrap_form(AddNewTask)
+            # connection is not autocommit by default. So you must commit to save
+            # your changes.
+            connection.commit()
+
+            with connection.cursor() as cursor:
+                # Read a single record
+                sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
+                cursor.execute(sql, ('webmaster@python.org',))
+                result = cursor.fetchone()
+                logger.info(result)
+                # do something
+            api.portal.show_message(message='Success!', request=self.request)
+
+AddNewUserView = layout.wrap_form(AddNewUser)

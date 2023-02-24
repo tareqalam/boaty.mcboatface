@@ -6,9 +6,9 @@
 
 <browser:page
 for="*"
-name="add_new_task"
+name="add_new_user"
 permission="zope2.View"
-class=".form.AddNewTaskView"
+class=".form.AddNewUserView"
 />
 
 </configure>
