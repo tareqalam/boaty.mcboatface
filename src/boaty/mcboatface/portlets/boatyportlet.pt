@@ -1,11 +1,4 @@
-<div class="weather">
-    <h3>Weather Report</h3>
-    <span tal:content="view/weather_report"></span>
-    <br>
-    Pressure: 
-    <span tal:content="view/get_pressure"></span>
-    <br>
-    Humidity: 
-    <span tal:content="view/get_humidity"></span>
-    <br>
+<div class="portlet">
+  <h3>Lists</h3>
+  <a tal:condition="python: context.portal_type == 'Department'" tal:attributes="href python:context.absolute_url() + '/student_list'">Student list</a>
 </div>

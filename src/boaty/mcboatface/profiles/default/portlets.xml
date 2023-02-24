@@ -20,7 +20,8 @@
     This will enable the portlet in the dashboard.
     -->
     <!--<for interface="plone.app.portlets.interfaces.IDashboard" />-->
-
+    <assignment category="context" manager="plone.leftcolumn" name="portlets.Boatyportlet"
+     type="boaty.mcboatface.portlets.Boatyportlet"/>
   </portlet>
   
   
