@@ -73,6 +73,13 @@ class Renderer(base.Renderer):
 
     def render(self):
         return self._template()
+    
+    def get_department_url(self):
+        if self.context.portal_type == 'Department':
+            return self.context.absolute_url() + '/student_list'
+        elif self.context.portal_type == 'Student':
+            return aq_inner(self.context).aq_parent.absolute_url() + '/student_list'
+        return False
 
     @property
     def available(self):

@@ -1,10 +1,10 @@
 <div class="portlet">
   <header class="portletHeader">Menu
   </header>
-  <section class="portletContent">
+  <section class="portletContent" tal:define="department_link python:view.get_department_url()">
     <ul>
-      <li class="portletItem">
-        <a class="tile" tal:condition="python: context.portal_type == 'Department'" tal:attributes="href python:context.absolute_url() + '/student_list'">Student list</a>
+      <li class="portletItem" tal:condition="department_link">
+        <a class="tile" tal:attributes="href department_link">Student list</a>
 
       </li>
 

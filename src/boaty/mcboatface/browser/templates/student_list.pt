@@ -47,6 +47,8 @@
           <label>Gender</label>
           <div>
             <select id="form-horizontal-select" name="gender" id="gender">
+              <option value="" tal:attributes="selected python:str(context.REQUEST.get('gender', ''))=='' and 'selected' or '';">Select</option>
+              
               <option value="male" tal:attributes="selected python:str(context.REQUEST.get('gender'))=='male' and 'selected' or '';">Male</option>
               <option value="female" tal:attributes="selected python:str(context.REQUEST.get('gender'))=='female' and 'selected' or '';">Female</option>
             </select>
