@@ -3,6 +3,10 @@ import pymysql
 
 def get_connection():
     # Connect to the database
+    # TODO
+    # read secret.txt
+    # get the password
+    # use the password here
     connection = pymysql.connect(host='localhost',
                                 user='root',
                                 password='1',

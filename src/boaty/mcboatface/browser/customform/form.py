@@ -30,6 +30,7 @@ class AddNewUser(form.Form):
 
         logger.info(data)
         logger.info(errors)
+        # create connection with mysql
         connection = get_connection()
         with connection:
             with connection.cursor() as cursor:
@@ -44,7 +45,7 @@ class AddNewUser(form.Form):
             with connection.cursor() as cursor:
                 # Read a single record
                 sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
-                cursor.execute(sql, ('webmaster@python.org',))
+                cursor.execute(sql, (data.get('email'),))
                 result = cursor.fetchone()
                 logger.info(result)
                 # do something

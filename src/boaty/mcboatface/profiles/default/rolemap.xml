@@ -1,5 +1,10 @@
 <?xml version="1.0"?>
 <rolemap>
+  <roles>
+    <role name="Instructor"/>
+    <role name="Student"/>
+    <role name="Janitor"/>
+  </roles>
   <permissions>
   <!-- -*- extra stuff goes here -*- -->
 
@@ -8,6 +13,7 @@
       <role name="Site Administrator"/>
       <role name="Owner"/>
       <role name="Contributor"/>
+      <role name="Instructor"/>
     </permission>
 
 

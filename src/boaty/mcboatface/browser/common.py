@@ -1,6 +1,6 @@
 from zope.publisher.browser import BrowserView
 from Products.CMFPlone.PloneBatch import Batch
-
+from plone import api
 
 
 
@@ -72,3 +72,9 @@ class StudentPortfolios(StudentList):
         # do something with query
 
         return self.index()
+
+class StudentDashboard(BrowserView):
+    """"""
+    def get_username(self):
+        user = api.user.get_current()
+        return user.getId()

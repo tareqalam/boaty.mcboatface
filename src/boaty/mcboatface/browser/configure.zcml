@@ -23,18 +23,32 @@
         class=".common.StudentList"
         name="student_list"
         template="templates/student_list.pt"
-        permission="cmf.ManagePortal" />
+        permission="zope2.View" />
+
+  <browser:page
+        for="*"
+        class=".common.StudentDashboard"
+        name="student_dashboard"
+        template="templates/student_dashboard.pt"
+        permission="zope2.View" />
 
 <browser:page
         for="*"
         class=".common.StudentPortfolios"
         name="student_portfolios"
         template="templates/student_portfolios.pt"
-        permission="cmf.ManagePortal" />
+        permission="zope2.View  " />
 
 
 
   <include package=".customform" />
+
+  <browser:page
+     name="login_next"
+     for="*"
+     class=".login_redirect.LoginNext"
+     permission="zope2.Public"
+     />
 
 
 </configure>
