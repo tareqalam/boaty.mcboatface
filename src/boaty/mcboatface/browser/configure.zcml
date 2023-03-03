@@ -50,5 +50,11 @@
      permission="zope2.Public"
      />
 
+  <browser:page
+     name="export_student_to_mysql"
+     for="*"
+     class=".export.ExportStudentToMySQL"
+     permission="zope2.View"
+     />
 
 </configure>

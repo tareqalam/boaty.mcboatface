@@ -50,7 +50,7 @@ class StudentIntegrationTest(unittest.TestCase):
         )
 
     def test_ct_student_adding(self):
-        setRoles(self.portal, TEST_USER_ID, ["Contributor"])
+        setRoles(self.portal, TEST_USER_ID, ["Instructor"])
         obj = api.content.create(
             container=self.parent,
             type="Student",
