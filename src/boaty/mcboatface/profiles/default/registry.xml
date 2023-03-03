@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<registry>
+<!-- -*- extra stuff goes here -*- -->
+    <records prefix="plone.resources/boaty-js"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+        <value key="js">++plone++boaty.mcboatface/js/boaty_common.js</value>
+        <value key="deps">jquery</value>
+    </records>
+    <records prefix="plone.resources/boaty-css"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+        <value key="css">++plone++boaty.mcboatface/css/boaty_common.css</value>
+    </records>
+    <records prefix="plone.bundles/boaty-common"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+      <value key="resources">
+        <element>boaty-js</element>
+        <element>boaty-css</element>
+      </value>
+      <value key="enabled">True</value>
+      <value key="jscompilation">++plone++boaty.mcboatface/js/boaty_common.js</value>
+      <value key="csscompilation">++plone++boaty.mcboatface/css/boaty_common.css</value>
+      <value key="last_compilation">2023-02-25 00:00:00</value>
+      <value key="expression">python:context.absolute_url_path().startswith('/Plone/psychology')</value>
+    </records>
+</registry>

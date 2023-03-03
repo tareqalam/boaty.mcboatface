@@ -18,6 +18,7 @@ class ExportStudentToMySQL(BrowserView):
                     `studentName` varchar(255) COLLATE utf8_bin NULL,
                     `age` varchar(255) COLLATE utf8_bin NULL,
                     `gender` varchar(255) COLLATE utf8_bin NULL,
+                    `ageBelow25` varchar(255) COLLATE utf8_bin NULL,
                     PRIMARY KEY (`id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
                 AUTO_INCREMENT=1 ;
@@ -29,11 +30,12 @@ class ExportStudentToMySQL(BrowserView):
                     data = {
                         'studentName': obj.studentName,
                         'age': obj.age,
-                        'gender': obj.gender
+                        'gender': obj.gender,
+                        'ageBelow25': obj.ageBelow25()
                         }
                     sql = """INSERT INTO `students` 
-                    (`studentName`, `age`, `gender`) 
-                    VALUES ('%(studentName)s', '%(age)s', '%(gender)s')""" % data 
+                    (`studentName`, `age`, `gender`, `ageBelow25`) 
+                    VALUES ('%(studentName)s', '%(age)s', '%(gender)s', '%(ageBelow25)s')""" % data 
                     logger.info(sql)
                     logger.info((obj.studentName, str(obj.age), obj.gender))
                     cursor.execute(sql)
