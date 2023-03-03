@@ -36,6 +36,8 @@ class IStudent(model.Schema):
 
     gender = schema.Choice(title=_("Gender"), vocabulary=vocab_gender)
 
+    married = schema.Choice(title=_("Are you married?"), vocabulary="yes_no_dont_know")
+
     # If you want, you can load a xml model created TTW here
     # and customize it in Python:
 
