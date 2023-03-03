@@ -50,4 +50,6 @@
   <include package="collective.vdexvocabulary" />
   <vdex:vocabulary directory="vocabularies" />
 
+  <include package=".behaviors" />
+
 </configure>

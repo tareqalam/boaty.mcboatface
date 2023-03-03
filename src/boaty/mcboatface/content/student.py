@@ -29,7 +29,8 @@ vocab_gender = SimpleVocabulary(
 
 class IStudent(model.Schema):
     """Marker interface and Dexterity Python Schema for Student"""
-
+    firstName = schema.TextLine(title=_("First name"), required=True)
+    lastName = schema.TextLine(title=_("Last name"), required=True)
     studentName = schema.TextLine(title=_("Name of student"), required=True)
 
     age = schema.TextLine(title=_("Age of student"), required=False)
