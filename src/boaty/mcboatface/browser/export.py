@@ -26,7 +26,14 @@ class ExportStudentToMySQL(BrowserView):
                 connection.commit()
                 for student in students:
                     obj = student.getObject()
-                    sql = "INSERT INTO `students` (`studentName`, `age`, `gender`) VALUES ('%s', '%s', '%s')" % (obj.studentName, str(obj.age), obj.gender)
+                    data = {
+                        'studentName': obj.studentName,
+                        'age': obj.age,
+                        'gender': obj.gender
+                        }
+                    sql = """INSERT INTO `students` 
+                    (`studentName`, `age`, `gender`) 
+                    VALUES ('%(studentName)s', '%(age)s', '%(gender)s')""" % data 
                     logger.info(sql)
                     logger.info((obj.studentName, str(obj.age), obj.gender))
                     cursor.execute(sql)
