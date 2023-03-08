@@ -10,6 +10,8 @@
 
       <li class="portletItem">
         <a class="tile" tal:condition="python: context.portal_type == 'Department'" tal:attributes="href python:context.absolute_url() + '/++add++Student'">Add student</a>
+        <a class="tile" tal:condition="python: context.portal_type == 'Department'" tal:attributes="href python:context.absolute_url() + '/export_student_to_mysql?export=yes'">Export student</a>
+        <a class="tile" tal:condition="python: context.portal_type == 'Department'" tal:attributes="href python:context.absolute_url() + '/export_student_to_mysql?download_csv=yes'">Download student</a>
 
       </li>
     </ul>
