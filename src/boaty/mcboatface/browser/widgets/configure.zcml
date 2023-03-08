@@ -1,0 +1,34 @@
+<configure
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="boaty.macboatface.widgets">
+
+
+    <include package="z3c.form" />
+
+<class class=".widget_rating.RatingWidget">
+        <require permission="zope.Public"
+                 interface=".widget_rating.IRatingFormatWidget" />
+    </class>
+    <!-- use Text by default -->
+    <class class="zope.schema._field.Text">
+        <implements interface=".widget_rating.IRatingFormatWidget"/>
+    </class>
+  <z3c:widgetTemplate
+        mode="input"
+        widget=".widget_rating.RatingWidget"
+        layer="plone.app.z3cform.interfaces.IPloneFormLayer"
+        template="widget_rating_input.pt"
+        />
+
+    <adapter
+        factory=".converter.CustomRatingDataConverter"
+        for="zope.schema.interfaces.IFloat
+        boaty.mcboatface.browser.widgets.widget_rating.IRatingFormatWidget" />
+
+</configure>

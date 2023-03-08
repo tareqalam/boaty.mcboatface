@@ -56,5 +56,7 @@
      class=".export.ExportStudentToMySQL"
      permission="zope2.View"
      />
+    
+    <include package=".widgets" />
 
 </configure>

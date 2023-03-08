@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?><vdex language="en" orderSignificant="true" xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0">
 <vocabIdentifier>yes_no_dont_know</vocabIdentifier>
 <term>
-<termIdentifier>YES</termIdentifier>
-<caption>
-<langstring language="en">Yes</langstring>
-<langstring language="da">Ja</langstring>
-</caption>
+    <termIdentifier>YES</termIdentifier>
+    <caption>
+        <langstring language="en">Yes</langstring>
+        <langstring language="da">Ja</langstring>
+    </caption>
 </term>
 <term>
-<termIdentifier>NO</termIdentifier>
-<caption>
-<langstring language="en">No</langstring>
-<langstring language="da">Nej</langstring>
-</caption>
+    <termIdentifier>NO</termIdentifier>
+    <caption>
+        <langstring language="en">No</langstring>
+        <langstring language="da">Nej</langstring>
+    </caption>
 </term>
 <term>
-<termIdentifier>DONT_KNOW</termIdentifier>
-<caption>
-<langstring language="en">Dont know</langstring>
-<langstring language="da">Ved ikke/uoplyst</langstring>
-</caption>
+    <termIdentifier>DONT_KNOW</termIdentifier>
+    <caption>
+        <langstring language="en">Dont know</langstring>
+        <langstring language="da">Ved ikke/uoplyst</langstring>
+    </caption>
 </term>
 </vdex>

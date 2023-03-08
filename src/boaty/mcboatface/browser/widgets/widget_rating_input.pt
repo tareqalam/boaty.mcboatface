@@ -1,0 +1,114 @@
+<style>
+  /* - - - - - RATINGS */
+  
+  .rating {
+    width: 80%;
+    height: 50px;
+    padding: 5px 10px;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 20px;
+    background: #FFF;
+    display: block;
+    overflow: hidden;
+    box-shadow: 0 1px #CCC, 0 1px #DDD, 0 9px 6px -3px #999;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+  }
+  
+  .rating:not(:checked)>input {
+    display: none;
+  }
+  /* - - - - - RATE */
+  
+  #rate {
+    top: -65px;
+  }
+  
+  #rate:not(:checked)>label {
+    cursor: pointer;
+    float: right;
+    width: 20%;
+    height: 50px;
+    font-size: 150%;
+    display: block;
+    color: rgba(0, 135, 211, .4);
+    line-height: 33px;
+    text-align: center;
+  }
+  
+  #rate:not(:checked)>label:hover,
+  #rate:not(:checked)>label:hover~label {
+    color: rgba(0, 135, 211, .6);
+  }
+  
+  #rate>input:checked+label:hover,
+  #rate>input:checked+label:hover~label,
+  #rate>input:checked~label:hover,
+  #rate>input:checked~label:hover~label,
+  #rate>label:hover~input:checked~label {
+    color: rgba(0, 135, 211, .8);
+  }
+  
+  #rate>input:checked~label {
+    color: rgb(0, 135, 211);
+  }
+  /* - - - - - LIKE */
+  
+  #like {
+    bottom: -65px;
+  }
+  
+  #like:not(:checked)>label {
+    cursor: pointer;
+    float: right;
+    width: 20%;
+    height: 50px;
+    font-size: 150%;
+    display: block;
+    color: rgba(233, 54, 40, .4);
+    line-height: 33px;
+    text-align: center;
+  }
+  
+  #like:not(:checked)>label:hover,
+  #like:not(:checked)>label:hover~label {
+    color: rgba(233, 54, 40, .6);
+  }
+  
+  #like>input:checked+label:hover,
+  #like>input:checked+label:hover~label,
+  #like>input:checked~label:hover,
+  #like>input:checked~label:hover~label,
+  #like>label:hover~input:checked~label {
+    color: rgba(233, 54, 40, .8);
+  }
+  
+  #like>input:checked~label {
+    color: rgb(233, 54, 40);
+  }
+</style>
+<!-- RATE -->
+
+<section tal:attributes="id view/rate_or_like" tal:define="icon python:view.rate_or_like == 'rate' and '&#9733;' or '&#10084;'" class="rating">
+  <!-- FIFTH STAR -->
+  <input type="radio" id="star_5" name="rate" tal:attributes="id string:${view/id}_5;
+                  name view/name;checked python:view.value == '5.0'" value="5" />
+  <label for="star_5" tal:attributes="for string:${view/id}_5;" title="Five" tal:content="icon">&#9733;</label>
+  <!-- FOURTH STAR -->
+  <input type="radio" id="star_4" name="rate" tal:attributes="id string:${view/id}_4;
+                  name view/name;checked python:view.value == '4.0'" value="4" />
+  <label for="star_4" tal:attributes="for string:${view/id}_4;" title="Four" tal:content="icon">&#9733;</label>
+  <!-- THIRD STAR -->
+  <input type="radio" id="star_3" name="rate" tal:attributes="id string:${view/id}_3;
+                  name view/name;checked python:view.value == '3.0'" value="3" />
+  <label for="star_3" tal:attributes="for string:${view/id}_3;" title="Three" tal:content="icon">&#9733;</label>
+  <!-- SECOND STAR -->
+  <input type="radio" id="star_2" name="rate" tal:attributes="id string:${view/id}_2;
+                  name view/name;checked python:view.value == '2.0'" value="2" />
+  <label for="star_2" tal:attributes="for string:${view/id}_2;" title="Two" tal:content="icon">&#9733;</label>
+  <!-- FIRST STAR -->
+  <input type="radio" id="star_1" name="rate" tal:attributes="id string:${view/id}_1;
+                  name view/name;checked python:view.value == '1.0'" value="1" />
+  <label for="star_1" tal:attributes="for string:${view/id}_1;" title="One" tal:content="icon">&#9733;</label>
+</section>

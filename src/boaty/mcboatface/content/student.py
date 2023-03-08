@@ -2,7 +2,7 @@
 from boaty.mcboatface import _
 from plone.app.textfield import RichText
 
-# from plone.autoform import directives
+from plone.autoform import directives
 from plone.dexterity.content import Item
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
@@ -15,7 +15,8 @@ from zope.interface import Invalid
 from zope.interface import invariant
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from boaty.mcboatface.browser.widgets.widget_rating import RatingFieldWidget
 
 vocab_gender = SimpleVocabulary(
     [
@@ -31,6 +32,14 @@ class IStudent(model.Schema):
     """Marker interface and Dexterity Python Schema for Student"""
     firstName = schema.TextLine(title=_("First name"), required=True)
     lastName = schema.TextLine(title=_("Last name"), required=True)
+
+    directives.widget(studentRating=RatingFieldWidget)
+    studentRating = schema.Float(title=_("Rating"), required=False)
+
+    directives.widget(studentLikes=RatingFieldWidget)
+    studentLikes = schema.Float(title=_("Likes"), required=False)
+    studentLikes.rate_or_like='like'
+
     studentName = schema.TextLine(title=_("Name of student"), required=True)
 
     age = schema.TextLine(title=_("Age of student"), required=False)
@@ -38,6 +47,19 @@ class IStudent(model.Schema):
     gender = schema.Choice(title=_("Gender"), vocabulary=vocab_gender)
 
     married = schema.Choice(title=_("Are you married?"), vocabulary="yes_no_dont_know")
+    
+    directives.widget(demofield=CheckBoxFieldWidget)
+    demofield = schema.List(
+        title=_(u"demofield"),
+        required=False,
+        description=_(u''),
+        value_type=schema.Choice(vocabulary="yes_no_dont_know")
+    )
+
+    listnormal = schema.List(
+       title=u'List Field',
+       value_type=schema.Choice(vocabulary="yes_no_dont_know")
+    )
 
     # If you want, you can load a xml model created TTW here
     # and customize it in Python:
@@ -92,6 +114,11 @@ class IStudent(model.Schema):
 @implementer(IStudent)
 class Student(Item):
     """Content-type class for IStudent"""
+
+    def Title(self):
+        if self.firstName and self.lastName:
+            return self.firstName + ' ' + self.lastName
+        return self.studentName
 
     def ageBelow25(self):
         if self.age:
