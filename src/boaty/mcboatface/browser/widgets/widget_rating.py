@@ -33,13 +33,6 @@ class RatingWidget(widget.HTMLTextInputWidget, Widget):
         if getattr(self.field,'rate_or_like',None):
             self.rate_or_like = getattr(self.field,'rate_or_like')
 
-        # add_resource_on_request(
-        #    self.request,
-        #    'customlabel-edit-style')
-        # import pdb;pdb.set_trace()
-        # logger.info('customlabel-edit-style applied')
-
-
 @zope.component.adapter(zope.schema.interfaces.IField, interfaces.IFormLayer)
 @zope.interface.implementer(interfaces.IFieldWidget)
 def RatingFieldWidget(field, request):
