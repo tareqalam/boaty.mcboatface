@@ -11,7 +11,7 @@
 
     <include package="z3c.form" />
 
-<class class=".widget_rating.RatingWidget">
+    <class class=".widget_rating.RatingWidget">
         <require permission="zope.Public"
                  interface=".widget_rating.IRatingFormatWidget" />
     </class>
@@ -19,7 +19,7 @@
     <class class="zope.schema._field.Text">
         <implements interface=".widget_rating.IRatingFormatWidget"/>
     </class>
-  <z3c:widgetTemplate
+    <z3c:widgetTemplate
         mode="input"
         widget=".widget_rating.RatingWidget"
         layer="plone.app.z3cform.interfaces.IPloneFormLayer"

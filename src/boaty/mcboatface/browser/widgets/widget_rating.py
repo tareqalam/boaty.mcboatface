@@ -28,10 +28,10 @@ class RatingWidget(widget.HTMLTextInputWidget, Widget):
 
     def update(self):
         super(RatingWidget, self).update()
-        widget.addFieldClass(self)
-
+        # widget.addFieldClass(self)
         if getattr(self.field,'rate_or_like',None):
             self.rate_or_like = getattr(self.field,'rate_or_like')
+
 
 @zope.component.adapter(zope.schema.interfaces.IField, interfaces.IFormLayer)
 @zope.interface.implementer(interfaces.IFieldWidget)

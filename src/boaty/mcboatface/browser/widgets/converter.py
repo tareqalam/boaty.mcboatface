@@ -16,11 +16,11 @@ class CustomRatingDataConverter(FloatDataConverter):
         return self.formatter.symbols.get('decimal')
 
     def toFieldValue(self, value):
-        #import pdb;pdb.set_trace()
+        """This will be called when we save the form"""
         if value is None:
             return None
         v = value.strip().replace(self.mark(), u'.')
-        #import pdb;pdb.set_trace()
+        # import pdb;pdb.set_trace()
         if not len(v):
             return None
         try:
@@ -30,7 +30,8 @@ class CustomRatingDataConverter(FloatDataConverter):
             raise FormatterValidationError(self.errorMessage, value)
 
     def toWidgetValue(self, value):
-        """See interfaces.IDataConverter"""
+        """this will be called when we laod the form"""
+        # import pdb;pdb.set_trace()
         if value is self.field.missing_value or value=='':
             return u''
         return self.formatter.format(value)
