@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+1.0.1 (2023-03-08)
+------------------
+- Clean widget. [tareq]
+- Downlaod csv. [tareq]
+
+
 1.0.0 (2023-03-08)
 ------------------
 - Changelog rc. [tareq]
